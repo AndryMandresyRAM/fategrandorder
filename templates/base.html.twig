@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="U-XA-Compatible" content="ie=edge">
+        <title>{% block title %}FGO{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{asset('css/vendors/bootstrap.css')}}">
+{# <link rel="stylesheet" href="{{asset('css/vendors/normalize.css')}}">
+
+            {# <link rel="stylesheet" type="text/css" href="{{asset('css/vendors/style.css')}}" media="screen"> #}
+{# <link rel="stylesheet" type="text/css" href="{{asset('css/vendors/font-awesome.min.css')}}" media="screen">
+<link rel="stylesheet" type="text/css" href="{{asset('css/vendors/et-icons.css')}}" media="screen">
+<link rel="stylesheet" type="text/css" href="{{asset('css/vendors/tooltip.css')}}" media="screen">
+<link rel="stylesheet" type="text/css" href="{{asset('css/vendors/lightbox.css')}}" media="screen">
+
+<link rel="stylesheet" type="text/css" href="{{asset('css/vendors/publisher.css')}}" media="screen">
+<link rel="stylesheet" type="text/css" href="{{asset('css/vendors/animate.css')}}" media="screen">  #}
+
+
+
+
+
+{# <link rel="stylesheet" href="{{asset('css/vendors/owl.css')}}"> #}
+
+            {# <link rel="stylesheet" type="text/css" href="{{asset('css/vendors/hover.css')}}"> #}
+        {% endblock %}
+    </head>
+    <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+	<a class="navbar-brand" href="{{path('home')}}">FATE</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+<li class="nav-item"></li>
+
+<a class="nav-link {% if current_menu is defined and current_menu == 'servant' %}active{% endif %}"
+
+
+
+
+				 href="{{ path('servant.index') }}">Servant</a>
+			</li>
+			{# <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Master</a>
+					<a class="dropdown-item" href="#">Series</a>
+					<div class="dropdown-divider"></div>
+				</div>
+			</li> #}
+			<li class="nav-item">
+				<a class="nav-link" href="#">Master</a>
+			</li>
+
+			{# <li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			</li> #}
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+			<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Rechercher</button>
+		</form>
+	</div>
+</nav>
+
+
+        {% block body %} {% endblock %}
+        {% block javascripts %}
+<script src="{{asset('js/vendors/jquery-3.3.1.js')}}"></script>
+
+
+<script src="js/vendors/bootstrap.js"></script>
+
+{# <script src="{{asset('js/vendors/lightbox.min.js')}}"></script>
+
+<script src="{{asset('js/vendors/wow.min.js')}}"></script>
+
+<script src="{{asset('js/vendors/jquery.onepagenav.js')}}"></script>
+
+            {# <script src="{{asset('js/vendors/owl.carousel.js')}}"></script> #}
+{# <script src="{{asset('js/vendors/core.js')}}"></script>
+
+<script src="{{asset('js/vendors/tooltip.js')}}"></script>
+
+<script src="{{asset('js/vendors/main.js')}}"></script>
+
+<script src="{{asset('js/vendors/jquery.form-validator.js')}}"></script>
+
+            {# <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> #}
+{# <script src="{{asset('js/vendors/preloader.js')}}"></script>
+<script src="{{asset('js/vendors/owl.carousel.js')}}"></script> #}
+
+
+
+        {% endblock %}
+    </body>
+</html>

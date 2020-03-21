@@ -1,0 +1,18 @@
+#   index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+#home : 
+    #path: /
+    #controller: App\Controller\HomeController::index
+
+home : 
+    path: /
+    controller: App\Controller\HomeController::index
+servant.index : 
+    path: /servant.index
+    controller: App\Controller\ServantController::index
+
+servant.show :
+    path: /servants/{id}
+    controller: App\Controller\ServantController::show

@@ -1,0 +1,31 @@
+body{
+	font-family: "lucida sans";
+}
+
+/* Header */
+header{
+	height: auto;
+	padding: 10px 0;
+	border-bottom: 1px solid #000;
+}
+
+header .logo h2{
+	font-size: 35px;
+}
+
+header nav .nav-list{
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+}
+
+header nav .nav-list .list a{
+	display: block;
+	padding: 15px;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+}
+
+header nav .nav-list .list a:hover{
+	color: #7cb62a;
+}

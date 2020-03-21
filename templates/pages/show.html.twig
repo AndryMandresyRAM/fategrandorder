@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{servant.name}}
+{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            {# <h1>{{servant.name}}</h1> #}
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <h1>{{servant.name}}</h1>
+                    <h2>{{servant.class}}</h2>
+                    <div class="text-primary" style="font-size: 2rem; font-weight: bold;">{{servant.noblephantasme}}</div>
+                    <a href="#" class="btn btn-primary">Invoquer le servant</a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>    
+{% endblock %}

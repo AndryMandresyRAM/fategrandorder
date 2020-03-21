@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Accueil' %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1>Bienvenue dans la guerre du Graal</h1>
+            <p>Choisissez votre artefact et invoquez votre servant</p>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Les derniers servants listés</h2>
+        <div class="row flex">
+        {% for servant in servants %}
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('servant.show', {id: servant.id}) }}">{{servant.name}}</a>
+                        </h5>
+                        <p class="card-text">Classe = {{servant.class}}</p>
+                        <div class="text-danger" style="font-weight: bold; font-size: 1rem;"> {{servant.noblephantasme}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
