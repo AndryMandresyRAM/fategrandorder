@@ -45,6 +45,7 @@ class AdminServantController extends AbstractController{
         {
             $this->em->persist($servant);
             $this->em->flush();
+            $this->addFlash('success', 'Servant crée avec succès');
             return $this->redirectToRoute('admin.servant.index');
         }
 
@@ -63,6 +64,7 @@ class AdminServantController extends AbstractController{
 
         if($form->isSubmitted() && $form->isValid()){
             $this->em->flush();
+            $this->addFlash('success', 'Servant modifié avec succès');
             return $this->redirectToRoute('admin.servant.index');
         }
 
@@ -71,4 +73,22 @@ class AdminServantController extends AbstractController{
             'form'=>$form->createView()
         ]);
     }
+
+    /** 
+     * @Route("/admin/servant/{id}", name="admin.servant.delete", methods="DELETE")
+     * */ 
+    
+    
+
+    public function delete(Servant $servant, Request $request)
+    {
+        if($this->isCsrfTokenValid('delete'.$servant->getId(), $request->get('_token'))){
+            $this->em->remove($servant);
+            $this->em->flush();
+            $this->addFlash('success', 'Servant supprimé avec succès');
+            return $this->redirectToRoute('admin.servant.index');
+        }
+        
+    }
+
 }

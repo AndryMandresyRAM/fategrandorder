@@ -1,10 +1,16 @@
 {% extends "base.html.twig" %}
 
-{% block title 'Gerer les biens' %}
+{% block title 'Gerer les servants' %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Gérer les biens</h1>
+        <h1>Gérer les servants</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
 
         <table class="table table-striped">
             <thead>
@@ -23,6 +29,11 @@
                         <td>{{servant.noblephantasme}}</td>
                         <td>
                             <a href="{{path('admin.servant.edit', {id: servant.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <form method="POST" action="{{ path('admin.servant.delete', {id: servant.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{csrf_token('delete' ~ servant.id)}}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}

@@ -3,8 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+/* use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity; */
 
+/* @UniqueEntity("Name") */
 /**
+ * 
  * @ORM\Entity(repositoryClass="App\Repository\ServantRepository")
  */
 class Servant
@@ -17,16 +21,21 @@ class Servant
     private $id;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z]/")
+     * @Assert\Length(min=3, max=255)
      * @ORM\Column(type="string", length=255)
      */
     private $Name;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255, options={"default": "Saber"})
      */
     private $Class;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z]/")
+     * @Assert\Length(min=10, max=255)
      * @ORM\Column(type="text")
      */
     private $Noble_Phantasme;
