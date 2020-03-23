@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Gerer les biens' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les biens</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Classe</th>
+                    <th>Noble Phantasme</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servant in servants %}
+                    <tr>
+                        <td>{{servant.name}}</td>
+                        <td>{{servant.class}}</td>
+                        <td>{{servant.noblephantasme}}</td>
+                        <td>
+                            <a href="{{path('admin.servant.edit', {id: servant.id}) }}" class="btn btn-secondary">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{path('admin.servant.new')}}" class="btn btn-primary">Ajouter un nouveau servant</a>
+        </div>
+
+    </div>
+{% endblock %}
+
