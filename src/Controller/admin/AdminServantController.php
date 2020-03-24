@@ -32,7 +32,10 @@ class AdminServantController extends AbstractController{
     public function index(): Response
     {
         $servants = $this->repository->findAll();
-        return $this->render('admin/servant/index.html.twig', compact('servants'));
+        return $this->render('admin/servant/index.html.twig'/* , compact('servants') */, [
+            'current_menu' => 'admin',
+            'servants' => $servants
+        ]);
     }
 
 

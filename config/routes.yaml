@@ -28,3 +28,6 @@ admin.servant.new :
 admin.servant.edit :
     path: /admin/servant/{id}
     controller: App\Controller\admin\AdminServantController::edit
+
+logout :
+    path: /logout
