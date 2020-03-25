@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Servant;
+use App\Entity\ServantSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
@@ -62,8 +63,8 @@ class ServantRepository extends ServiceEntityRepository
     /* AFAKA AMPIASAINA ATO ANATY CLASSE RAHA MISY REPETITION BE LOATRA */
     private function findVisibleQuery() : QueryBuilder
     {
-        return $this->createQueryBuilder('s')
-        ->where('s.Class = :actual')->setParameter('actual', "Saber");
+        return $this->createQueryBuilder('s');
+       /*  ->where('s.Class = :actual')->setParameter('actual', "Saber"); */
     }
     /*
     public function findOneBySomeField($value): ?Servant
@@ -76,4 +77,23 @@ class ServantRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllVisible(ServantSearch $search): array
+    {
+            $query =  $this->findVisibleQuery();
+
+            if($search->getName()){
+                $query = $query
+                ->andWhere("s.Name = :name")
+                ->setParameter('name', $search->getName());
+            }
+
+            if ($search->getClasse()) {
+                $query = $query
+                ->andwhere("s.Class = :classe")
+                ->setParameter('classe', $search->getName());
+            }
+
+            return $query->getQuery()->getResult();
+    }
 }
