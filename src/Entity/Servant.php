@@ -40,6 +40,11 @@ class Servant
      */
     private $Noble_Phantasme;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Master", inversedBy="Servant")
+     */
+    private $Master;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +82,18 @@ class Servant
     public function setNoblePhantasme(string $Noble_Phantasme): self
     {
         $this->Noble_Phantasme = $Noble_Phantasme;
+
+        return $this;
+    }
+
+    public function getMaster(): ?Master
+    {
+        return $this->Master;
+    }
+
+    public function setMaster(?Master $Master): self
+    {
+        $this->Master = $Master;
 
         return $this;
     }

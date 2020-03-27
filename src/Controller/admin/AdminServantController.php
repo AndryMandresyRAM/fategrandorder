@@ -4,11 +4,11 @@ namespace App\Controller\admin;
 
 use App\Repository\ServantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Servant;
 use App\Form\ServantType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class AdminServantController extends AbstractController{
@@ -24,16 +24,12 @@ class AdminServantController extends AbstractController{
     }
 
 
-    /* 
-    *
-    *@Route("/admin", name="admin.servant.index")
-    *
-     */
+    
     public function index(): Response
     {
         $servants = $this->repository->findAll();
         return $this->render('admin/servant/index.html.twig'/* , compact('servants') */, [
-            'current_menu' => 'admin',
+            'current_menu' => 'adminservant',
             'servants' => $servants
         ]);
     }

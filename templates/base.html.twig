@@ -56,14 +56,28 @@
 				</div>
 			</li> #}
 			<li class="nav-item">
-				<a class="nav-link" href="#">Master</a>
+<a class="nav-link {% if current_menu is defined and current_menu == 'master' %} active {% endif %}"
+			
+			href="{{path('master')}}">Master</a>
+
 			</li>
 
 			{% if app.user %}
 				
-				<li class="nav-item">
+				{# <li class="nav-item">
 					<a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="/admin">Back-office</a>
-				</li>
+				</li> #}
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Back-office
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item {% if current_menu is defined and current_menu == 'adminservant' %}active{% endif %}" href="/admin/servant">Servant</a>
+					<a class="dropdown-item {% if current_menu is defined and current_menu == 'adminmaster' %}active{% endif %}" href="/admin/master">Master</a>
+					<div class="dropdown-divider"></div>
+				</div>
+			</li>
 
 			{% endif %}
 
@@ -86,7 +100,7 @@
 				class="form-inline my-2 my-lg-0">
 				{# <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
 											<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Rechercher</button> #}
-				<a class="btn btn-danger my-2 my-sm-0" href="/admin">Administrateur</a>
+				<a class="btn btn-danger my-2 my-sm-0" href="/admin/servant">Administrateur</a>
 			</form>
 
 		{% endif %}
@@ -97,10 +111,10 @@
 
         {% block body %} {% endblock %}
         {% block javascripts %}
+
 <script src="{{asset('js/vendors/jquery-3.3.1.js')}}"></script>
 
-
-<script src="js/vendors/bootstrap.js"></script>
+<script src="{{asset('js/vendors/bootstrap.js')}}"></script>
 
 {# <script src="{{asset('js/vendors/lightbox.min.js')}}"></script>
 

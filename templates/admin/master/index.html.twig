@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Gerer les servants' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les masters</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Type de magie</th>{# 
+                    <th>Noble Phantasme</th>
+                    <th>Action</th> #}
+                </tr>
+            </thead>
+            <tbody>
+                {% for master in masters %}
+                    <tr>
+                        <td>{{master.name}}</td>
+                        <td>{{master.magictype}}</td>
+                        {# <td>{{servant.noblephantasme}}</td> #}
+                        <td>
+                            <a href="{{path('admin.master.edit', {id: master.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <form method="POST" action="{{ path('admin.master.delete', {id: master.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{csrf_token('delete' ~ master.id)}}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{path('admin.master.new')}}" class="btn btn-primary">Ajouter un nouveau master</a>
+        </div>
+
+    </div>
+{% endblock %}
+

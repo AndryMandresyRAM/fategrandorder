@@ -18,7 +18,7 @@ servant.show :
     controller: App\Controller\ServantController::show
 
 admin.servant.index : 
-    path: /admin
+    path: /admin/servant
     controller: App\Controller\admin\AdminServantController::index
 
 admin.servant.new :
