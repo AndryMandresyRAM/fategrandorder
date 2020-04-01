@@ -1,0 +1,35 @@
+{{include ('admin/master/index.html.twig') }}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Le  servant de {{master.name}}</h1>
+
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Classe</th>
+                    <th>Noble Phantasme</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servant in servants %}
+                    <tr>
+                        <td>{{servant.name}}</td>
+                        <td>{{servant.classType}}</td>
+                        <td>{{servant.noblephantasme}}</td>
+                        <td>
+                            <a href="{# {{path('admin.masterservant.edit', {id: servant.id}) }} #}#" class="btn btn-secondary">Modifier</a>
+                            <form method="POST" action="{# {{ path('admin.servant.delete', {id: servant.id})}} #}#" style="display: inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                {# <input type="hidden" name="_token" value="{{csrf_token('delete' ~ servant.id)}}"> #}
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

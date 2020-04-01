@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Master;
 use App\Entity\MasterSearch;
+use App\Entity\Servant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
@@ -54,6 +55,8 @@ class MasterRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m');
     }
+
+    
 
     public function findAllVisible(MasterSearch $search) : array
     {

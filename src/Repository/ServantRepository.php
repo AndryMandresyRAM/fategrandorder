@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Master;
 use App\Entity\Servant;
 use App\Entity\ServantSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -77,6 +78,14 @@ class ServantRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getServant(Master $master): array
+    {
+        $query = $this->findVisibleQuery()
+            ->where("s.Master = :master")
+            ->setParameter('master', $master);
+        return $query->getQuery()->getResult();
+    }
 
     public function findAllVisible(ServantSearch $search): array
     {

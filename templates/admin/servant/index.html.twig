@@ -25,7 +25,7 @@
                 {% for servant in servants %}
                     <tr>
                         <td>{{servant.name}}</td>
-                        <td>{{servant.class}}</td>
+                        <td>{{servant.classType}}</td>
                         <td>{{servant.noblephantasme}}</td>
                         <td>
                             <a href="{{path('admin.servant.edit', {id: servant.id}) }}" class="btn btn-secondary">Modifier</a>

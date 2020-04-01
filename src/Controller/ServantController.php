@@ -51,10 +51,10 @@ class ServantController extends AbstractController
 
         $servants = $this->repository->findAllVisible($search);
 
-        $servant = $this->repository->findClass();
+        /* $servant = $this->repository->findClass(); */
         /* $servant[0]->setName("Mordred, the knight of rebellion");
         $this->em->flush(); */
-        dump($servant);
+        /* dump($servant); */
 
         return $this->render("pages/ServantController.html.twig", [
             'current_menu' => 'servant',

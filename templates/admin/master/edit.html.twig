@@ -4,5 +4,8 @@
     <div class="container mt-4">
     <h1>Editer le master</h1>
        {{include ('admin/master/_form.html.twig', { form: form,  button: 'Editer'}) }}
+    <a href="{{path('admin.master.servant', {id: master.id})}}" class="btn btn-primary">
+        Lié un servant
+    </a>
     </div>
 {% endblock %}

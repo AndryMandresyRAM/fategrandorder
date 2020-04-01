@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title 'Gerer les servants' %}
+{% block title 'Gerer les masters' %}
 
 {% block body %}
     <div class="container mt-4">
@@ -16,7 +16,9 @@
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Type de magie</th>{# 
+                    <th>Type de magie</th>
+                    <th>Action</th>
+                    {# 
                     <th>Noble Phantasme</th>
                     <th>Action</th> #}
                 </tr>
@@ -26,8 +28,10 @@
                     <tr>
                         <td>{{master.name}}</td>
                         <td>{{master.magictype}}</td>
+                        {# <td>{{master.servant.name}}</td> #}
                         {# <td>{{servant.noblephantasme}}</td> #}
                         <td>
+                            <a href="{{path('admin.master.masterservantshow', {id: master.id}) }}" class="btn btn-outline-info">Afficher son servant</a>
                             <a href="{{path('admin.master.edit', {id: master.id}) }}" class="btn btn-secondary">Modifier</a>
                             <form method="POST" action="{{ path('admin.master.delete', {id: master.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr?')">
                                 <input type="hidden" name="_method" value="DELETE">

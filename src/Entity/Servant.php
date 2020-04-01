@@ -13,11 +13,22 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Servant
 {
+    const CLASSE = [
+       0 => 'Archer',
+       1 => 'Assassin',
+       2 => 'Berserker',
+       3 => 'Caster',
+       4 => 'Lancer',
+       5 => 'Rider',
+       6 => 'Saber'
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
+
+
     private $id;
 
     /**
@@ -41,9 +52,13 @@ class Servant
     private $Noble_Phantasme;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Master", inversedBy="Servant")
+     * cascade={"persist"}
      */
     private $Master;
+
+
 
     public function getId(): ?int
     {
@@ -65,6 +80,11 @@ class Servant
     public function getClass(): ?string
     {
         return $this->Class;
+    }
+
+    public function getClassType(): ?string
+    {
+        return self::CLASSE[$this->Class];
     }
 
     public function setClass(string $Class): self
@@ -97,4 +117,25 @@ class Servant
 
         return $this;
     }
+
+    /**
+     * Get the value of ClassName
+     */ 
+    public function getClassName()
+    {
+        return $this->getClassType().' = '.$this->Name;
+    }
+
+
+    /* *
+     * Set the value of ClassName
+     *
+     * @return  self
+     */ 
+    /* public function setClassName($ClassName)
+    {
+        $this->ClassName = $ClassName;
+
+        return $this;
+    } */
 }

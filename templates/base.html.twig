@@ -25,6 +25,8 @@
 {# <link rel="stylesheet" href="{{asset('css/vendors/owl.css')}}"> #}
 
             {# <link rel="stylesheet" type="text/css" href="{{asset('css/vendors/hover.css')}}"> #}
+<link rel="stylesheet" href="{{asset('css/vendors/select2.min.css')}}">
+
         {% endblock %}
     </head>
     <body>
@@ -135,6 +137,10 @@
 {# <script src="{{asset('js/vendors/preloader.js')}}"></script>
 <script src="{{asset('js/vendors/owl.carousel.js')}}"></script> #}
 
+<script src="{{asset('js/vendors/select2.min.js')}}"></script>
+<script>
+	$('select').select2();
+</script>
 
 
         {% endblock %}
