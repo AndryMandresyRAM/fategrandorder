@@ -1,8 +1,10 @@
 <div class="card mb-4">
+    {% if servant.filename %}
+        <img src="{{ vich_uploader_asset(servant, 'imagefile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height: 400px;">
+    {% endif %}
     <div class="card-body">
         <h5 class="card-title">
-            <a href="{{path('servant.show', {id: servant.id})}}"></a>
-            {{servant.name}}
+            <a href="{{ path('servant.show', {id: servant.id}) }}">{{servant.name}}</a>
         </h5>
         <p class="card-text">Classe : {{servant.classType}}</p>
         <div class="text-danger">

@@ -56,7 +56,7 @@ class ServantRepository extends ServiceEntityRepository
     public function findLatest(): array
     {
         return $this->createQueryBuilder('s')
-            ->setMaxResults(4)
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

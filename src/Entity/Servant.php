@@ -2,14 +2,20 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /* use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity; */
 
 /* @UniqueEntity("Name") */
 /**
  * 
  * @ORM\Entity(repositoryClass="App\Repository\ServantRepository")
+ * @Vich\Uploadable
  */
 class Servant
 {
@@ -32,6 +38,27 @@ class Servant
     private $id;
 
     /**
+     * 
+     *
+     * @var string|integer|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * Undocumented variable
+     * @Assert\Image(
+     *      mimeTypes= {"image/jpeg", "image/png"},
+     *      mimeTypesMessage = "L'image choisit n'est pas valide",
+     *      notFoundMessage = "L'image n'a pas été trouvée",
+     *      uploadErrorMessage = "Erreur dans l'upload de l'image"
+     * )
+     * @Vich\UploadableField(mapping="servant_image", fileNameProperty="filename")
+     * @var File|null
+     */
+    private $imagefile;
+
+    /**
      * @Assert\Regex("/^[a-zA-Z]/")
      * @Assert\Length(min=3, max=255)
      * @ORM\Column(type="string", length=255)
@@ -46,7 +73,7 @@ class Servant
 
     /**
      * @Assert\Regex("/^[a-zA-Z]/")
-     * @Assert\Length(min=10, max=255)
+     * @Assert\Length(min=6, max=255)
      * @ORM\Column(type="text")
      */
     private $Noble_Phantasme;
@@ -57,6 +84,11 @@ class Servant
      * cascade={"persist"}
      */
     private $Master;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
 
 
 
@@ -138,4 +170,67 @@ class Servant
 
         return $this;
     } */
+
+    /**
+     * Get the value of filename
+     *
+     * @return  string|null
+     */ 
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set the value of filename
+     *
+     * @param  string|null  $filename
+     *
+     * @return  self
+     */ 
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get undocumented variable
+     *
+     * @return  File|null
+     */ 
+    public function getImagefile(): ?File
+    {
+        return $this->imagefile;
+    }
+
+    /**
+     * Set undocumented variable
+     *
+     * @param  File|null  $imagefile  Undocumented variable
+     *
+     * @return  self
+     */ 
+    public function setImagefile(?File $imagefile): Servant
+    {
+        $this->imagefile = $imagefile;
+        if ($this->imagefile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
 }

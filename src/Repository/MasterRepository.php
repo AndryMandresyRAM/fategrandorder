@@ -64,13 +64,13 @@ class MasterRepository extends ServiceEntityRepository
 
         if($search->getName()){
             $query = $query
-            ->andWhere("m.name = :name")
+            ->andWhere("m.Name = :name")
             ->setParameter('name', $search->getName());
         }
 
         if ($search->getMagictype()) {
             $query = $query
-                ->andWhere("m.magictype = :mt")
+                ->andWhere("m.Magictype = :mt")
                 ->setParameter('mt', $search->getMagictype());
         }
 
